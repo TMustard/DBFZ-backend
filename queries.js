@@ -2,16 +2,16 @@ const database = require("./database-connection");
 
 module.exports = {
   list() {
-    return database("resolution").select();
+    return database("tips").select();
   },
   read(id) {
-    return database("resolution")
+    return database("tips")
       .select()
       .where("id", id)
       .first();
   },
   create(resolution) {
-    return database("resolution")
+    return database("tips")
       .insert(resolution)
       .returning("*")
       .then(record => record[0]);
