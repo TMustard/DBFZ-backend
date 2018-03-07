@@ -8,8 +8,8 @@ app.use(bodyParser.json());
 app.get("/tips", (request, response) => {
   queries
     .list()
-    .then(resolutions => {
-      response.json({ resolutions });
+    .then(response => {
+      response.json({ tips });
     })
     .catch(console.error);
 });
@@ -17,8 +17,8 @@ app.get("/tips", (request, response) => {
 app.get("/tips/:id", (request, response) => {
   queries
     .read(request.params.id)
-    .then(resolution => {
-      resolution ? response.json({ resolution }) : response.sendStatus(404);
+    .then(response => {
+      response ? response.json({ tips }) : response.sendStatus(404);
     })
     .catch(console.error);
 });
