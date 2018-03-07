@@ -1,8 +1,11 @@
 const database = require("./database-connection");
 
 module.exports = {
-  list() {
+  listTips() {
     return database("tips").select();
+  },
+  listGuides() {
+    return database("guides").select();
   },
   read(id) {
     return database("tips")

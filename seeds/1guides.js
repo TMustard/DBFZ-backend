@@ -5,9 +5,9 @@ exports.seed = function(knex, Promise) {
       return knex("guides").insert([
         {
           id: 1,
-          name: "guide1",
+          name: "Android 16 Guide",
           guide:
-            "If you press forward + A1 or A2 while in blockstun, you will perform a guard cancel, which tags out your current point character for one of your teammates. This costs one bar and obviously, if all of your teammates are dead it won't work!"
+            "Raw level 3 attacks only do blue damage (which is fully recoverable), so unless the lvl 3 is going to finish off a character, it's usually better to go for a different option"
         },
         {
           id: 2,

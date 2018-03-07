@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 app.get("/tips", (request, response) => {
   queries
-    .list()
+    .listTips()
     .then(tips => {
       response.json({ tips });
     })
@@ -48,6 +48,15 @@ app.put("/tips/:id", (request, response) => {
     .update(request.params.id, request.body)
     .then(tip => {
       response.json({ tip: tip[0] });
+    })
+    .catch(console.error);
+});
+
+app.get("/guides", (request, response) => {
+  queries
+    .listGuides()
+    .then(guides => {
+      response.json({ guides });
     })
     .catch(console.error);
 });
