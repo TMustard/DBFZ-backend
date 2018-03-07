@@ -5,11 +5,11 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 
-app.get("/tips", (request, response) => {
+app.get("/tips", (req, resp) => {
   queries
     .list()
-    .then(response => {
-      response.json({ tips });
+    .then(tips => {
+      resp.json({ tips });
     })
     .catch(console.error);
 });
@@ -17,41 +17,41 @@ app.get("/tips", (request, response) => {
 app.get("/tips/:id", (request, response) => {
   queries
     .read(request.params.id)
-    .then(response => {
+    .then(tips => {
       response ? response.json({ tips }) : response.sendStatus(404);
     })
     .catch(console.error);
 });
 
-// app.post("/resolutions", (request, response) => {
-//   queries
-//     .create(request.body)
-//     .then(resolution => {
-//       response.status(201).json({ resolution: resolution });
-//     })
-//     .catch(console.error);
-// });
-//
-// app.delete("/resolutions/:id", (request, response) => {
-//   queries
-//     .delete(request.params.id)
-//     .then(() => {
-//       response.sendStatus(204);
-//     })
-//     .catch(console.error);
-// });
-//
-// app.put("/resolutions/:id", (request, response) => {
-//   queries
-//     .update(request.params.id, request.body)
-//     .then(resolution => {
-//       response.json({ resolution: resolution[0] });
-//     })
-//     .catch(console.error);
-// });
-//
-// app.use((request, response) => {
-//   response.send(404);
-// });
+app.post("/tips", (request, response) => {
+  queries
+    .create(request.body)
+    .then(tip => {
+      response.status(201).json({ tip: tip });
+    })
+    .catch(console.error);
+});
+
+app.delete("/tips/:id", (request, response) => {
+  queries
+    .delete(request.params.id)
+    .then(() => {
+      response.sendStatus(204);
+    })
+    .catch(console.error);
+});
+
+app.put("/tips/:id", (request, response) => {
+  queries
+    .update(request.params.id, request.body)
+    .then(tip => {
+      response.json({ tip: tip[0] });
+    })
+    .catch(console.error);
+});
+
+app.use((request, response) => {
+  response.send(404);
+});
 
 module.exports = app;
