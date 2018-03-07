@@ -5,11 +5,11 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 
-app.get("/tips", (req, resp) => {
+app.get("/tips", (request, response) => {
   queries
     .list()
     .then(tips => {
-      resp.json({ tips });
+      response.json({ tips });
     })
     .catch(console.error);
 });
@@ -51,7 +51,7 @@ app.put("/tips/:id", (request, response) => {
 });
 
 app.use((request, response) => {
-  response.send(404);
+  response.sendStatus(404);
 });
 
 module.exports = app;

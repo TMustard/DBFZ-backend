@@ -10,21 +10,21 @@ module.exports = {
       .where("id", id)
       .first();
   },
-  create(resolution) {
+  create(tip) {
     return database("tips")
-      .insert(resolution)
+      .insert(tip)
       .returning("*")
       .then(record => record[0]);
   },
-  update(id, resolution) {
-    return database("resolution")
-      .update(resolution)
+  update(id, tip) {
+    return database("tips")
+      .update(tip)
       .where("id", id)
       .returning("*")
       .then(record => record[0]);
   },
   delete(id) {
-    return database("resolution")
+    return database("tips")
       .delete()
       .where("id", id);
   }
