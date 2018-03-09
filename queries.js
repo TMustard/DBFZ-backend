@@ -13,15 +13,21 @@ module.exports = {
       .where("id", id)
       .first();
   },
+  readGuides(id) {
+    return database("guides")
+      .select()
+      .where("id", id)
+      .first();
+  },
   create(tip) {
     return database("tips")
       .insert(tip)
       .returning("*")
       .then(record => record[0]);
   },
-  update(id, tip) {
-    return database("tips")
-      .update(tip)
+  update(id, guide) {
+    return database("guides")
+      .update(guide)
       .where("id", id)
       .returning("*")
       .then(record => record[0]);

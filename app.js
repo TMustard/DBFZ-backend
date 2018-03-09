@@ -61,6 +61,24 @@ app.get("/guides", (request, response) => {
     .catch(console.error);
 });
 
+app.get("/guides/:id", (request, response) => {
+  queries
+    .readGuides(request.params.id)
+    .then(guides => {
+      response.json({ guides });
+    })
+    .catch(console.error);
+});
+
+app.put("/guides/:id", (request, response) => {
+  queries
+    .update(request.params.id, request.body)
+    .then(guide => {
+      response.json({ guide: guide[0] });
+    })
+    .catch(console.error);
+});
+
 app.use((request, response) => {
   response.sendStatus(404);
 });
